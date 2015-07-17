@@ -10,7 +10,7 @@
 PHP Fatal error:  Cannot use Lv\Common\Foo as Foo because the name is already in use in ...
 ```
 
-这难道是 PHP 的 bug 吗？
+这难道是 PHP 的 bug 吗？貌似 HHVM 没有这个问题。
 
 复现方法：
 ```
