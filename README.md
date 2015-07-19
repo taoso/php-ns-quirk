@@ -14,6 +14,5 @@ PHP Fatal error:  Cannot use Lv\Common\Foo as Foo because the name is already in
 
 复现方法：
 ```
-composer dump-autoload
 php app.php
 ```
