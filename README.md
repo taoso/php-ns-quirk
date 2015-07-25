@@ -1,18 +1,13 @@
-# PHP 命名空间的奇怪行为
+# PHP namespace quirk
 
-我们定义三个类，分别是`Lv\Foo`，`Lv\Common\Foo`和`Lv\Bar`。
+Let's define three class, `Lv\Foo`, `Lv\Common\Foo` and  `Lv\Bar` in `Foo.php`, `CommonFoo.php` and `Bar.php`.
 
-其中，`Lv\Bar`扩展了`Lv\Common\Foo`，而且在`Lv\Bar`的代码中写有`use Lv\Common\Foo`。
-请注意这里的`Lv\Foo`和`Lv\Common\Foo`。
+The `Lv\Bar` extends the  `Lv\Common\Foo` by using `use Lv\Common\Foo` and extends `Lv\Common\Foo`'s alias `Foo`.
 
-那么，在实例化`Lv\Foo`对象之后再试图实例化`Lv\Bar`会报以下错误：
+And then, in `app.php`, if we make an instance of `Lv\Foo`, and then try to make an instance of `Lv\Bar`, the bellow error will be reported,
+
 ```
 PHP Fatal error:  Cannot use Lv\Common\Foo as Foo because the name is already in use in ...
 ```
 
-这难道是 PHP 的 bug 吗？貌似 HHVM 没有这个问题。
-
-复现方法：
-```
-php app.php
-```
+The expected result should be that the `Lv\Common\Foo`'s *alias* `Foo`, which is in the script `CommonFoo.php` with the `Lv` namespace will not confilict the `Lv\Foo`.
